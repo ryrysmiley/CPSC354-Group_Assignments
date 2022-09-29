@@ -15,9 +15,11 @@ data II = II NN NN
 
 -- Positive integers (to avoid dividing by 0)
 data PP = I | T PP
+  deriving Show
 
 -- Rational numbers
 data QQ =  QQ II PP
+
 
 ------------------------
 -- Arithmetic on the  VM
@@ -26,6 +28,13 @@ data QQ =  QQ II PP
 ----------------
 -- PP Arithmetic
 ----------------
+addP :: PP -> PP -> PP
+addP I y = y
+addP (T x) y = T (addP x y)
+
+multP :: PP -> PP -> PP
+multP I y = I
+multP (T x) y = addP y (multP x y)
 
 
 ----------------
@@ -57,7 +66,8 @@ divN n m = S (divN (subN n m) m)
 ----------------
 -- II Arithmetic
 ----------------
-
+addI :: II -> II -> II
+addI (II a b) (II c d) = II (addN a c) (addN b d)
 
 ----------------
 -- QQ Arithmetic
@@ -83,3 +93,6 @@ main = do
     print $ multN (S (S O)) (S (S (S O))) -- S (S (S (S (S (S O)))))
     print $ subN (S (S (S O))) (S (S O)) -- S O
     print $ divN (S (S (S (S (S (S O)))))) (S (S O)) -- S (S (S O))
+    print $ addI (II (S (S O)) (S O)) (II (S (S O)) (S O)) -- II (S (S (S (S O)))) (S (S O))
+    print $ addP (T (T I)) (T I) -- T (T (T I))
+    print $ multP (T (T (T I))) (T (T (T I))) -- T (T (T (T (T (T I)))))
