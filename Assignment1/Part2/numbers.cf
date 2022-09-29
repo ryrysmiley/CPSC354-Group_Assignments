@@ -6,6 +6,7 @@ Divide. Exp1 ::= Exp1 "/" Exp2 ;
 Mod. Exp1 ::= Exp1 "%" Exp2 ;
 
 Neg. Exp2 ::= "-" Exp2 ;
+Abs. Exp2 ::= "|" Exp "|" ;
 
 Expo. Exp2 ::= Exp2 "^" Exp3 ;
 
