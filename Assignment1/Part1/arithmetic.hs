@@ -7,14 +7,15 @@
 
 -- Natural numbers
 data NN = O | S NN
-  deriving (Eq,Show) -- for equality and printing
+    deriving (Eq,Show) -- for equality and printing
 
 -- Integers
 data II = II NN NN
-  deriving Show -- for printing
+    deriving (Eq,Show) -- for printing
 
 -- Positive integers (to avoid dividing by 0)
 data PP = I | T PP
+    deriving (Eq,Show)
 
 -- Rational numbers
 data QQ =  QQ II PP
@@ -26,7 +27,13 @@ data QQ =  QQ II PP
 ----------------
 -- PP Arithmetic
 ----------------
+addP :: PP -> PP -> PP
 
+multP :: PP -> PP -> PP
+
+nn_pp :: PP -> NN
+
+ii_pp :: PP -> II
 
 ----------------
 -- NN Arithmetic
@@ -42,17 +49,20 @@ multN :: NN -> NN -> NN
 multN O m = O
 multN (S n) m = addN (multN n m) m
 
--- subtract natural numbers
+-- subtract natural numbers THIS NOT REQUIRED
 subN :: NN -> NN -> NN
 subN O m = O
 subN (S n) O = S n
 subN (S n) (S m) = subN n m
 
--- divide natural numbers
-divN :: NN -> NN -> NN
+-- divide natural numbers --NOTE: CHANGE CONDITION AND WILL BE SIMILAR TO %
+divN :: NN -> PP -> NN
 divN O m = O
-divN n O = O
+divN n 0 = O
 divN n m = S (divN (subN n m) m)
+
+-- remainder natural numbers
+
 
 ----------------
 -- II Arithmetic
@@ -82,4 +92,5 @@ main = do
     print $ addN (S (S O)) (S O) -- S (S (S O))
     print $ multN (S (S O)) (S (S (S O))) -- S (S (S (S (S (S O)))))
     print $ subN (S (S (S O))) (S (S O)) -- S O
-    print $ divN (S (S (S (S (S (S O)))))) (S (S O)) -- S (S (S O))
+    print $ divN (S (S (S (S (S O))))) (T (T I)) -- 
+    
