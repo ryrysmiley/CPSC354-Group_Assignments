@@ -3,9 +3,13 @@ Minus. Exp ::= Exp "-" Exp1;
 
 Times. Exp1 ::= Exp1 "*" Exp2 ;
 Divide. Exp1 ::= Exp1 "/" Exp2 ;
-Neg. Exp1 ::= "-" Exp1 ;
+Mod. Exp1 ::= Exp1 "%" Exp2 ;
+
+Neg. Exp2 ::= "-" Exp2 ;
 
 Expo. Exp2 ::= Exp2 "^" Exp3 ;
+
+Paren. Exp3 ::= "(" Exp ")" ;
 
 Num. Exp3 ::= Integer ;
 
