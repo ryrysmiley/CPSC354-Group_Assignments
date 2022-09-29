@@ -26,6 +26,8 @@ data QQ =  QQ II PP
 ----------------
 -- PP Arithmetic
 ----------------
+
+
 ----------------
 -- NN Arithmetic
 ----------------
@@ -40,6 +42,18 @@ multN :: NN -> NN -> NN
 multN O m = O
 multN (S n) m = addN (multN n m) m
 
+-- subtract natural numbers
+subN :: NN -> NN -> NN
+subN O m = O
+subN (S n) O = S n
+subN (S n) (S m) = subN n m
+
+-- divide natural numbers
+divN :: NN -> NN -> NN
+divN O m = O
+divN n O = O
+divN n m = S (divN (subN n m) m)
+
 ----------------
 -- II Arithmetic
 ----------------
@@ -48,6 +62,7 @@ multN (S n) m = addN (multN n m) m
 ----------------
 -- QQ Arithmetic
 ----------------
+
 
 
 ----------------
@@ -66,3 +81,5 @@ multN (S n) m = addN (multN n m) m
 main = do
     print $ addN (S (S O)) (S O) -- S (S (S O))
     print $ multN (S (S O)) (S (S (S O))) -- S (S (S (S (S (S O)))))
+    print $ subN (S (S (S O))) (S (S O)) -- S O
+    print $ divN (S (S (S (S (S (S O)))))) (S (S O)) -- S (S (S O))
