@@ -4,6 +4,8 @@ Minus. Exp ::= Exp "-" Exp1;
 Times. Exp1 ::= Exp1 "*" Exp2 ;
 Divide. Exp1 ::= Exp1 "/" Exp2 ;
 
-Num. Exp2 ::= Integer ;
+Expo. Exp2 ::= Exp2 "^" Exp3 ;
 
-coercions Exp 2 ;
+Num. Exp3 ::= Integer ;
+
+coercions Exp 3 ;
