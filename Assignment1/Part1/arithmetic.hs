@@ -29,18 +29,24 @@ data QQ =  QQ II PP
 -- PP Arithmetic
 ----------------
 addP :: PP -> PP -> PP
-addP I y = y
+addP I y = T y
 addP (T x) y = T (addP x y)
 
 multP :: PP -> PP -> PP
-multP I y = I
+multP I y = y
 multP (T x) y = addP y (multP x y)
 
-multP :: PP -> PP -> PP
-
 nn_pp :: PP -> NN
+nn_pp I = (S O)
+nn_pp (T x) = S (nn_pp x)
 
 ii_pp :: PP -> II
+ii_pp I = II (S O) O
+ii_pp (T x) = II (S (nn_pp x)) O
+
+-- convert numbers of type PP to numbers of type II
+ii_pp :: PP -> II
+ii_pp m = II(nn_int(int_pp(m)))(O)
 
 ----------------
 -- NN Arithmetic
@@ -65,17 +71,35 @@ subN (S n) (S m) = subN n m
 -- divide natural numbers --NOTE: CHANGE CONDITION AND WILL BE SIMILAR TO %
 divN :: NN -> PP -> NN
 divN O m = O
-divN n 0 = O
-divN n m = S (divN (subN n m) m)
+divN (S n) I = S n
+divN (S n) m = S (divN(subN n (nn_pp m)) m)
 
 -- remainder natural numbers
+modN :: NN -> PP -> NN
+modN n m = (subN n (multN (divN n m) (nn_pp m)))
+
+-- modN O m = O
+-- modN n I = O
+-- modN n m = (modN (subN n (nn_pp m)) m)
 
 
 ----------------
 -- II Arithmetic
 ----------------
+-- Addition: (a-b)+(c-d)=(a+c)-(b+d)
 addI :: II -> II -> II
 addI (II a b) (II c d) = II (addN a c) (addN b d)
+
+-- Multiplication: (a-b)*(c-d)=(ac+bd)-(ad+bc)
+multI :: II -> II -> II
+multI (II a b) (II c d) = II (addN (multN a c) (multN b d)) (addN (multN a d) (multN b c))
+
+-- Negation:
+negI :: II -> II
+negI (II a b) = (II b a)
+
+
+-- multI (II a b) (II c d) = II (multN (subN a c) (subN b d)) (subN (multN a d) (multN b c))
 
 ----------------
 -- QQ Arithmetic
@@ -86,21 +110,44 @@ addI (II a b) (II c d) = II (addN a c) (addN b d)
 ----------------
 -- Normalisation
 ----------------
+-- normalizeI :: II -> II
+-- normalizeI (II (m O)) = II (m O)
+-- normalizeI II (S m) (S n) = II m n
+
+-- normalizeI :: II -> II
+-- normalizeI II(m)(O) = II(m)(O)
+-- normalizeI (II(S m)(S n)) = II(m)(n)
 
 
 ----------------------------------------------------
 -- Converting between VM-numbers and Haskell-numbers
 ----------------------------------------------------
+int_nn :: NN->Integer
+int_nn (O) = 0
+int_nn(S n) = 1 + int_nn(n)
 
+int_ii :: II -> Integer
+int_ii (II(m)(n)) = int_nn(m) - int_nn(n)
 
 ----------
 -- Testing
 ----------
 main = do
-    print $ addN (S (S O)) (S O) -- S (S (S O))
-    print $ multN (S (S O)) (S (S (S O))) -- S (S (S (S (S (S O)))))
-    print $ subN (S (S (S O))) (S (S O)) -- S O
-    print $ divN (S (S (S (S (S (S O)))))) (S (S O)) -- S (S (S O))
-    print $ addI (II (S (S O)) (S O)) (II (S (S O)) (S O)) -- II (S (S (S (S O)))) (S (S O))
-    print $ addP (T (T I)) (T I) -- T (T (T I))
-    print $ multP (T (T (T I))) (T (T (T I))) -- T (T (T (T (T (T I)))))
+    -- print $ addN (S (S O)) (S O) -- S (S (S O))
+    -- print $ multN (S (S O)) (S (S (S O))) -- S (S (S (S (S (S O)))))
+    -- print $ subN (S (S (S O))) (S (S O)) -- S O
+    -- print $ addI (II (S (S O)) (S O)) (II (S (S O)) (S O)) -- II (S (S (S (S O)))) (S (S O))
+
+    -- print $ addP (T I) (T (T I)) -- T (T (T I))
+    -- print $ multP (T (T I)) (T I) -- T (T (T (T (T (T I)))))
+    -- print $ nn_pp (T (T (T I))) -- S (S (S O))
+    -- print $ ii_pp (T(T I)) -- II (S (S O)) (S (S (S O)))
+    -- print $ divN (S (S (S (S (S O))))) (T (T I)) -- S (S O)
+    -- print $ modN  (S (S (S (S (S O))))) (T (T I)) -- S (S (S O))
+    -- print $ multN (divN (S (S (S (S (S O))))) (T (T I))) (nn_pp (T (T I)))
+    -- print $ divN (S (S (S (S (S O))))) (T (T I))
+    -- print $ modN (S (S (S (S (S O))))) (T (T I))
+
+    print $ int_ii (addI (II (S (S O)) (S O)) (II (S (S O)) (S O)))
+
+    print $ negI (II (S O) O)
