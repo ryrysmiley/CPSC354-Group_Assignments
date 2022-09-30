@@ -44,10 +44,6 @@ ii_pp :: PP -> II
 ii_pp I = II (S O) O
 ii_pp (T x) = II (S (nn_pp x)) O
 
--- convert numbers of type PP to numbers of type II
-ii_pp :: PP -> II
-ii_pp m = II(nn_int(int_pp(m)))(O)
-
 ----------------
 -- NN Arithmetic
 ----------------
@@ -68,15 +64,31 @@ subN O m = O
 subN (S n) O = S n
 subN (S n) (S m) = subN n m
 
+--- check is the first number is less than the second number
+less :: NN -> NN -> Bool
+less O m = True
+less n O = False
+less (S n) (S m) = less n m
+
 -- divide natural numbers --NOTE: CHANGE CONDITION AND WILL BE SIMILAR TO %
 divN :: NN -> PP -> NN
 divN O m = O
 divN (S n) I = S n
-divN (S n) m = S (divN(subN n (nn_pp m)) m)
+divN (n) (m) | less (nn_pp m) n = S (divN (subN n (nn_pp m)) m)
+             | otherwise = O
+                  
+
+
 
 -- remainder natural numbers
 modN :: NN -> PP -> NN
-modN n m = (subN n (multN (divN n m) (nn_pp m)))
+modN O m = O
+modN (S n) I = O
+modN (n) (m) | less (nn_pp m) n = modN (subN n (nn_pp m)) m
+             | otherwise = n
+
+
+    
 
 -- modN O m = O
 -- modN n I = O
@@ -98,12 +110,25 @@ multI (II a b) (II c d) = II (addN (multN a c) (multN b d)) (addN (multN a d) (m
 negI :: II -> II
 negI (II a b) = (II b a)
 
-
--- multI (II a b) (II c d) = II (multN (subN a c) (subN b d)) (subN (multN a d) (multN b c))
+-- Subtraction:
+subtrI :: II -> II -> II
+subtrI (II(a)(b))(II(c)(d)) = II(addN(a)(d))(addN(b)(c))
 
 ----------------
 -- QQ Arithmetic
 ----------------
+-- addQ :: QQ -> QQ -> QQ
+-- addP I m = (T m)
+-- addP (T n) m =  addP n (T m)
+
+----------------
+-- Normalisation
+----------------
+
+normalizeI :: II -> II
+normalizeI (II n O) = (II n O)
+normalizeI (II O m) = (II O m)
+normalizeI (II (S n) (S m)) = normalizeI (II n m)
 
 
 
@@ -137,17 +162,26 @@ main = do
     -- print $ multN (S (S O)) (S (S (S O))) -- S (S (S (S (S (S O)))))
     -- print $ subN (S (S (S O))) (S (S O)) -- S O
     -- print $ addI (II (S (S O)) (S O)) (II (S (S O)) (S O)) -- II (S (S (S (S O)))) (S (S O))
-
     -- print $ addP (T I) (T (T I)) -- T (T (T I))
     -- print $ multP (T (T I)) (T I) -- T (T (T (T (T (T I)))))
     -- print $ nn_pp (T (T (T I))) -- S (S (S O))
     -- print $ ii_pp (T(T I)) -- II (S (S O)) (S (S (S O)))
-    -- print $ divN (S (S (S (S (S O))))) (T (T I)) -- S (S O)
+    -- print $ divN (S (S (S (S (S O))))) (T (T I)) --　(S O)
     -- print $ modN  (S (S (S (S (S O))))) (T (T I)) -- S (S (S O))
     -- print $ multN (divN (S (S (S (S (S O))))) (T (T I))) (nn_pp (T (T I)))
-    -- print $ divN (S (S (S (S (S O))))) (T (T I))
-    -- print $ modN (S (S (S (S (S O))))) (T (T I))
+    print $ divN (S (S (S (S (S (S O)))))) (T (T I))   
+    print $ divN (S (S (S (S (S (S (S O))))))) (T (T I))   
+    print $ divN (S (S (S (S (S (S (S (S O)))))))) (T (T I))  
+    print $ divN (S (S (S (S (S (S (S (S (S O))))))))) (T (T I))  
 
-    print $ int_ii (addI (II (S (S O)) (S O)) (II (S (S O)) (S O)))
 
-    print $ negI (II (S O) O)
+    print $ divN (S (S O)) (T (T I))     
+
+    print $ modN (S (S O)) (T (T I)) 
+
+    print $ less (S (S (S (S (S (S O))))))  (S (S (S (S (S (S (S O))))))) 
+
+    print $ modN (S (S (S (S (S O))))) (T (T I))
+
+    -- print $ int_ii (addI (II (S (S O)) (S O)) (II (S (S O)) (S O)))
+    -- print $ negI (II (S O) O)
