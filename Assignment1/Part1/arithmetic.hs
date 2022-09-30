@@ -77,9 +77,6 @@ divN (S n) I = S n
 divN (n) (m) | less (nn_pp m) n = S (divN (subN n (nn_pp m)) m)
              | otherwise = O
                   
-
-
-
 -- remainder natural numbers
 modN :: NN -> PP -> NN
 modN O m = O
@@ -147,9 +144,19 @@ normalizeI (II (S n) (S m)) = normalizeI (II n m)
 ----------------------------------------------------
 -- Converting between VM-numbers and Haskell-numbers
 ----------------------------------------------------
-int_nn :: NN->Integer
+nn_int :: Integer -> NN
+nn_int (0) = O
+nn_int (n) = S (nn_int (n-1))
+
+int_nn :: NN -> Integer
 int_nn (O) = 0
 int_nn(S n) = 1 + int_nn(n)
+
+ii_int :: Integer -> II
+ii_int 0 = II O O
+ii_int (n) 
+    | 0 > n = negI (II (nn_int (negate n)) O)
+    | otherwise = II (nn_int n) O
 
 int_ii :: II -> Integer
 int_ii (II(m)(n)) = int_nn(m) - int_nn(n)
@@ -158,30 +165,4 @@ int_ii (II(m)(n)) = int_nn(m) - int_nn(n)
 -- Testing
 ----------
 main = do
-    -- print $ addN (S (S O)) (S O) -- S (S (S O))
-    -- print $ multN (S (S O)) (S (S (S O))) -- S (S (S (S (S (S O)))))
-    -- print $ subN (S (S (S O))) (S (S O)) -- S O
-    -- print $ addI (II (S (S O)) (S O)) (II (S (S O)) (S O)) -- II (S (S (S (S O)))) (S (S O))
-    -- print $ addP (T I) (T (T I)) -- T (T (T I))
-    -- print $ multP (T (T I)) (T I) -- T (T (T (T (T (T I)))))
-    -- print $ nn_pp (T (T (T I))) -- S (S (S O))
-    -- print $ ii_pp (T(T I)) -- II (S (S O)) (S (S (S O)))
-    -- print $ divN (S (S (S (S (S O))))) (T (T I)) --　(S O)
-    -- print $ modN  (S (S (S (S (S O))))) (T (T I)) -- S (S (S O))
-    -- print $ multN (divN (S (S (S (S (S O))))) (T (T I))) (nn_pp (T (T I)))
-    print $ divN (S (S (S (S (S (S O)))))) (T (T I))   
-    print $ divN (S (S (S (S (S (S (S O))))))) (T (T I))   
-    print $ divN (S (S (S (S (S (S (S (S O)))))))) (T (T I))  
-    print $ divN (S (S (S (S (S (S (S (S (S O))))))))) (T (T I))  
-
-
-    print $ divN (S (S O)) (T (T I))     
-
-    print $ modN (S (S O)) (T (T I)) 
-
-    print $ less (S (S (S (S (S (S O))))))  (S (S (S (S (S (S (S O))))))) 
-
-    print $ modN (S (S (S (S (S O))))) (T (T I))
-
-    -- print $ int_ii (addI (II (S (S O)) (S O)) (II (S (S O)) (S O)))
-    -- print $ negI (II (S O) O)
+    print $ ii_int(-1)
