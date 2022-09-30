@@ -76,9 +76,6 @@ divN O m = O
 divN (S n) I = S n
 divN (n) (m) | less (nn_pp m) n = S (divN (subN n (nn_pp m)) m)
              | otherwise = O
-                  
-
-
 
 -- remainder natural numbers
 modN :: NN -> PP -> NN
@@ -86,14 +83,6 @@ modN O m = O
 modN (S n) I = O
 modN (n) (m) | less (nn_pp m) n = modN (subN n (nn_pp m)) m
              | otherwise = n
-
-
-    
-
--- modN O m = O
--- modN n I = O
--- modN n m = (modN (subN n (nn_pp m)) m)
-
 
 ----------------
 -- II Arithmetic
@@ -117,19 +106,22 @@ subtrI (II(a)(b))(II(c)(d)) = II(addN(a)(d))(addN(b)(c))
 ----------------
 -- QQ Arithmetic
 ----------------
--- addQ :: QQ -> QQ -> QQ
--- addP I m = (T m)
--- addP (T n) m =  addP n (T m)
+
+-- QQ Addition
+addQ :: QQ -> QQ -> QQ
+addQ (QQ(a)(b)) (QQ(c)(d)) = QQ (addI (multI a (ii_pp(d))) (multI (ii_pp(b)) (c))) (multP b d)
+
+-- QQ Multiplication:
+multQ :: QQ -> QQ -> QQ
+multQ (QQ(a)(b)) (QQ(c)(d)) = QQ(multI a c)(multP b d)
 
 ----------------
 -- Normalisation
 ----------------
-
 normalizeI :: II -> II
 normalizeI (II n O) = (II n O)
 normalizeI (II O m) = (II O m)
 normalizeI (II (S n) (S m)) = normalizeI (II n m)
-
 
 
 ----------------
@@ -147,12 +139,36 @@ normalizeI (II (S n) (S m)) = normalizeI (II n m)
 ----------------------------------------------------
 -- Converting between VM-numbers and Haskell-numbers
 ----------------------------------------------------
+
+-- Precondition: Inputs are non-negative
+nn_int :: Integer -> NN
+nn_int 0 = O
+nn_int n = addN (S O) (nn_int (n - 1))
+
 int_nn :: NN->Integer
 int_nn (O) = 0
 int_nn(S n) = 1 + int_nn(n)
 
 int_ii :: II -> Integer
-int_ii (II(m)(n)) = int_nn(m) - int_nn(n)
+int_ii (II O O) = 0
+int_ii (II (n) m) = int_nn(n) - int_nn(m)
+
+-- Precondition: Inputs are positive
+pp_int :: Integer -> PP
+pp_int 1 = I
+pp_int n = addP I (pp_int (n - 1))
+
+int_pp :: PP -> Integer
+int_pp I = 1
+int_pp (T n) = 1 + int_pp (n)
+
+
+
+------------------------------
+-- Normalisation by Evaluation
+------------------------------
+-- nbv :: II -> II
+-- nbv m = ii_int (int_ii m)
 
 ----------
 -- Testing
@@ -169,19 +185,22 @@ main = do
     -- print $ divN (S (S (S (S (S O))))) (T (T I)) --　(S O)
     -- print $ modN  (S (S (S (S (S O))))) (T (T I)) -- S (S (S O))
     -- print $ multN (divN (S (S (S (S (S O))))) (T (T I))) (nn_pp (T (T I)))
-    print $ divN (S (S (S (S (S (S O)))))) (T (T I))   
-    print $ divN (S (S (S (S (S (S (S O))))))) (T (T I))   
-    print $ divN (S (S (S (S (S (S (S (S O)))))))) (T (T I))  
-    print $ divN (S (S (S (S (S (S (S (S (S O))))))))) (T (T I))  
+
+    -- print $ divN (S (S (S (S (S (S O)))))) (T (T I))   
+    -- print $ divN (S (S (S (S (S (S (S O))))))) (T (T I))   
+    -- print $ divN (S (S (S (S (S (S (S (S O)))))))) (T (T I))  
+    -- print $ divN (S (S (S (S (S (S (S (S (S O))))))))) (T (T I))  
 
 
-    print $ divN (S (S O)) (T (T I))     
+    -- print $ divN (S (S O)) (T (T I))     
 
-    print $ modN (S (S O)) (T (T I)) 
+    -- print $ modN (S (S O)) (T (T I)) 
 
-    print $ less (S (S (S (S (S (S O))))))  (S (S (S (S (S (S (S O))))))) 
+    -- print $ less (S (S (S (S (S (S O))))))  (S (S (S (S (S (S (S O))))))) 
 
-    print $ modN (S (S (S (S (S O))))) (T (T I))
+    -- print $ modN (S (S (S (S (S O))))) (T (T I))
 
     -- print $ int_ii (addI (II (S (S O)) (S O)) (II (S (S O)) (S O)))
     -- print $ negI (II (S O) O)
+
+    print $ int_ii (normalizeI (II (S (S (S O))) (S (S O))))
