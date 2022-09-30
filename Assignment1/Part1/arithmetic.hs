@@ -11,14 +11,15 @@ data NN = O | S NN
 
 -- Integers
 data II = II NN NN
-    deriving (Eq,Show) -- for printing
+    deriving Show -- for printing
 
 -- Positive integers (to avoid dividing by 0)
 data PP = I | T PP
-  deriving Show
+   deriving Show
 
 -- Rational numbers
 data QQ =  QQ II PP
+    deriving Show
 
 
 ------------------------
@@ -99,9 +100,9 @@ multI (II a b) (II c d) = II (addN (multN a c) (multN b d)) (addN (multN a d) (m
 negI :: II -> II
 negI (II a b) = (II b a)
 
--- Subtraction:
-subtrI :: II -> II -> II
-subtrI (II(a)(b))(II(c)(d)) = II(addN(a)(d))(addN(b)(c))
+-- Equality of integers
+instance Eq II where
+  (II a b) == (II c d) = (a == c) && (b == d)
 
 ----------------
 -- QQ Arithmetic
@@ -115,9 +116,9 @@ addQ (QQ(a)(b)) (QQ(c)(d)) = QQ (addI (multI a (ii_pp(d))) (multI (ii_pp(b)) (c)
 multQ :: QQ -> QQ -> QQ
 multQ (QQ(a)(b)) (QQ(c)(d)) = QQ (multI a c) (multP b d)
 
--- -- Equality of fractions
--- instance Eq QQ where
---   (QQ a b) == (QQ c d) = <insert your code here>
+-- Equality of fractions
+instance Eq QQ where
+  (QQ a b) == (QQ c d) = (multI a (ii_pp d)) == (multI c (ii_pp b))
 
 ----------------
 -- Normalisation
@@ -173,18 +174,19 @@ int_pp (T n) = 1 + int_pp (n)
 float_qq :: QQ -> Float
 float_qq (QQ(a)(b)) = fromIntegral(int_ii(a)) / fromIntegral(int_pp(b))
 
-
-
 ------------------------------
 -- Normalisation by Evaluation
 ------------------------------
 nbv :: II -> II
-nbv m = ii_int (int_ii m)
+
+
 
 ----------
 -- Testing
 ----------
 main = do
     print $ ii_int(-1)
-    print $ float_qq(addQ (QQ (ii_int 1) (pp_int 2)) (QQ (ii_int 1) (pp_int 2)))
+    print $ float_qq(addQ (QQ (ii_int 2) (pp_int 4)) (QQ (ii_int 1) (pp_int 2)))
+    print $ ii_int(5) == ii_int(-5)
+    print $ nbv (II (S (S O)) (S O))
 
