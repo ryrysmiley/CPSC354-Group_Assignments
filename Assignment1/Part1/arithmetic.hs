@@ -21,7 +21,6 @@ data PP = I | T PP
 data QQ =  QQ II PP
     deriving Show
 
-
 ------------------------
 -- Arithmetic on the  VM
 ------------------------
@@ -88,6 +87,7 @@ modN (n) (m) | less (nn_pp m) n = modN (subN n (nn_pp m)) m
 ----------------
 -- II Arithmetic
 ----------------
+
 -- Addition: (a-b)+(c-d)=(a+c)-(b+d)
 addI :: II -> II -> II
 addI (II a b) (II c d) = II (addN a c) (addN b d)
@@ -120,26 +120,12 @@ multQ (QQ(a)(b)) (QQ(c)(d)) = QQ (multI a c) (multP b d)
 instance Eq QQ where
   (QQ a b) == (QQ c d) = (multI a (ii_pp d)) == (multI c (ii_pp b))
 
-----------------
 -- Normalisation
 ----------------
 normalizeI :: II -> II
 normalizeI (II n O) = (II n O)
 normalizeI (II O m) = (II O m)
 normalizeI (II (S n) (S m)) = normalizeI (II n m)
-
-
-----------------
--- Normalisation
-----------------
--- normalizeI :: II -> II
--- normalizeI (II (m O)) = II (m O)
--- normalizeI II (S m) (S n) = II m n
-
--- normalizeI :: II -> II
--- normalizeI II(m)(O) = II(m)(O)
--- normalizeI (II(S m)(S n)) = II(m)(n)
-
 
 ----------------------------------------------------
 -- Converting between VM-numbers and Haskell-numbers
@@ -178,8 +164,7 @@ float_qq (QQ(a)(b)) = fromIntegral(int_ii(a)) / fromIntegral(int_pp(b))
 -- Normalisation by Evaluation
 ------------------------------
 nbv :: II -> II
-
-
+nbv m = ii_int (int_ii m)
 
 ----------
 -- Testing
@@ -188,5 +173,6 @@ main = do
     print $ ii_int(-1)
     print $ float_qq(addQ (QQ (ii_int 2) (pp_int 4)) (QQ (ii_int 1) (pp_int 2)))
     print $ ii_int(5) == ii_int(-5)
-    print $ nbv (II (S (S O)) (S O))
+    print $ nbv (ii_int(5))
+    print $ normalizeI (ii_int(5))
 
