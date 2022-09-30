@@ -107,13 +107,17 @@ subtrI (II(a)(b))(II(c)(d)) = II(addN(a)(d))(addN(b)(c))
 -- QQ Arithmetic
 ----------------
 
--- QQ Addition
+-- QQ Addition (a/b)+(c/d)=(ad+bc)/(bd)
 addQ :: QQ -> QQ -> QQ
 addQ (QQ(a)(b)) (QQ(c)(d)) = QQ (addI (multI a (ii_pp(d))) (multI (ii_pp(b)) (c))) (multP b d)
 
--- QQ Multiplication:
+-- QQ Multiplication: (a/b)*(c/d)=(ac)/(bd)
 multQ :: QQ -> QQ -> QQ
-multQ (QQ(a)(b)) (QQ(c)(d)) = QQ(multI a c)(multP b d)
+multQ (QQ(a)(b)) (QQ(c)(d)) = QQ (multI a c) (multP b d)
+
+-- -- Equality of fractions
+-- instance Eq QQ where
+--   (QQ a b) == (QQ c d) = <insert your code here>
 
 ----------------
 -- Normalisation
@@ -166,6 +170,9 @@ int_pp :: PP -> Integer
 int_pp I = 1
 int_pp (T n) = 1 + int_pp (n)
 
+float_qq :: QQ -> Float
+float_qq (QQ(a)(b)) = fromIntegral(int_ii(a)) / fromIntegral(int_pp(b))
+
 
 
 ------------------------------
@@ -179,3 +186,5 @@ nbv m = ii_int (int_ii m)
 ----------
 main = do
     print $ ii_int(-1)
+    print $ float_qq(addQ (QQ (ii_int 1) (pp_int 2)) (QQ (ii_int 1) (pp_int 2)))
+
