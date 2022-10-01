@@ -2,22 +2,22 @@
 * Kai Itokazu
 * Ryley Jue
 
-* Part 2
-Interesting Points:
+# Part 2
+## Interesting Points:
 1. Giving freedom of design within reason has benefits:
     -Heavy consideration of edge cases
     -Forces one to justify and understand every design decision
     -Encourages researching what others implemented for inspiration and learning
 2. Although not many edge cases I found the negative operations interesting in how it does floor division.
-3.
+3. This assignment forced me to justify my decisions while I still felt like I was just following PEMDAS and previously done interpreters. When I tried to explain what I implemented, it did not feel totally correct to just reference how it functions the same as other calculators. Perhaps that is something to look into.
 
-Order of Operations Design:
+## Order of Operations Design:
 1. Parentheses
 2. Exponents, Absolute Value, Negative
 3. Modulus, Multiplication, Division
 4. Addition, Subtraction
 
-Reasoning:
+## Reasoning:
 The design influence is based on PEMDAS and haskell integer operations. The new operations not explicit put in PEMDAS are Modulus, Absolute Value, and Negative.
 
 Modulus - Same order as multiplication and division. Follows how other languages and calculators would order modulus.
@@ -43,6 +43,6 @@ Negative - The negative sign for an integer works in simple cases and is simple 
 
 Overall most of the new grammar decisions were based around how haskell handles integer operations. There were few special and unexpected cases to handle. 
 
-Known Errors:
+## Known Errors:
 - Incorrect syntax like multiple operations in a row or incorrect parentheses and bars
 - Negative Exponents do not work because these are integer operations
