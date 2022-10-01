@@ -1,4 +1,3 @@
-
 ## Overview
 Our inital thought in this porject was that the logic behind each of the Arithmetic functions from a Discrete Mathematics point of view would be our best bet. As we continued onto the calculator portion, we found that our Discrete Math Background further aided us in determining what priority each function would get, and furthermore how to organize our functions.
 
@@ -18,11 +17,144 @@ Overall, we were able to learn a ton of how to utilize recurssion when making th
 ___
 
 **Examples:** \
-Natural Numbers Arithmetic - Addition 
+<u>Natural Numbers Arithmetic - Addition</u>
+> 2 + 3
+
+*Function*
 ```
 addN :: NN -> NN -> NN
 addN O m = m
 addN (S n) m = S (addN n m)
+```
+*Example*
+```
+addN (S (S O)) (S (S (S O))) = S (addN (S 0) (S (S (S O))))
+                             = S (S (S (addN 0 (S (S (S O))))))
+                             = (S (S (S O)))
+                             = S (S (S (S (S O))))
+                             = 5
+```
+
+<u>Natural Numbers Arithmetic - Division (Conversion to Int from NN)</u>
+> 3 / 2
+
+*Function*
+```
+-- Division -- 
+divN :: NN -> PP -> NN
+divN O m = O
+divN (S n) I = S n
+divN (n) (m) | less (nn_pp m) n = S (divN (subN n (nn_pp m)) m)
+             | otherwise = O
+             
+-- subtract natural numbers THIS NOT REQUIRED
+subN :: NN -> NN -> NN
+subN O m = O
+subN (S n) O = S n
+subN (S n) (S m) = subN n m
+             
+-- Natural Number to Integer --
+int_nn :: NN -> Integer
+int_nn (O) = 0
+int_nn(S n) = 1 + int_nn(n)
+
+-- Integer to Natural Number -- 
+nn_int :: Integer -> NN
+nn_int (0) = O
+nn_int (n) = S (nn_int (n-1))
+
+-- Integer to Positive Number -- 
+pp_int :: Integer -> PP
+pp_int 1 = I
+pp_int n = addP I (pp_int (n - 1))
+
+
+```
+
+*Example*
+```
+int_nn (divN (nn_int 3) (pp_int 2)) 
+= int_nn (divN (S (S (S (O)))) (T I)) 
+= int_nn (divN (S (S (S (O)))) nn_pp(T I)) | less (T I) (S (S (S (O))) 
+    = S (divN (subN (S (S (S (O))) (S (S (O)))) (T I))
+        = subN (S (S (O))) (S (O))
+            = subN (S (O)) (O)
+                = (S (O))
+        = S (divN (S (O)) (T I)) | otherwise
+            = 0
+    = S O
+```
+
+<u>Negation of Integers</u>
+> -1
+
+*Function*
+```
+-- Negation:
+negI :: II -> II
+negI (II a b) = (II b a)
+```
+
+*Example*
+```
+negI (II (nn_int 1) (nn_int 2)
+= (II (S O) (S (S O)))
+= (II (S (S O)) (S O))
+= 1
+```
+
+<u>Equality of Fractions</u>
+> 1/2 == 2/4
+
+*Function*
+```
+instance Eq QQ where
+  (QQ a b) == (QQ c d) = (multI a (ii_pp d)) == (multI c (ii_pp b))
+ 
+ii_int :: Integer -> II
+ii_int 0 = II O O
+ii_int (n) 
+    | 0 > n = negI (II (nn_int (negate n)) O)
+    | otherwise = II (nn_int n) O
+
+pp_int :: Integer -> PP
+pp_int 1 = I
+pp_int n = addP I (pp_int (n - 1))
+
+```
+
+*Example*
+```
+(QQ (ii_int 1) (pp_int 2)) == (QQ (ii_int 2) (pp_int 4))
+= QQ (II (S O) O) (T I) == QQ (II (S (S O)) O) (T(T(T I)))
+= (multI (II (S O) O) (ii_pp (T(T(T I))))) == (multI II (S (S O))) (ii_pp (T I)))
+= (multI (II (S O) O) (II (S (S (S (S O)))) O) == (multI (II (S (S O)) O) (II (S (S O)) O)
+    = II (addN (multN (S O) (S (S (S (S O))))) (multN (S (S O)) (S (S O)))) (addN (multN (S O) (S (S O))) (multN (S (S (S (S O)))) (S (S O))))
+    = II (addN (S (S (S (S O)))) (S (S (S (S O))))) (addN (S (S O)) (S (S (S (S (S (S O)))))))
+    = II (S (S (S (S (S (S (S (S O)))))))) (S (S (S (S (S (S (S (S O))))))))
+    = O
+= True
+
+```
+
+<u>Conversion from Natural Number to Integer</u>
+> (S (S O))
+
+*Function*
+```
+int_nn :: NN -> Integer
+int_nn (O) = 0
+int_nn(S n) = 1 + int_nn(n)
+```
+
+*Example*
+```
+int_nn (S (S O))
+= S ((S O))
+= 1 + int_nn(S O)
+= 1 + 1 (int_nn(O))
+= 1 + 1 + 0
+= 2
 ```
 
 # Part 2
