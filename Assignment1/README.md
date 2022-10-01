@@ -58,7 +58,7 @@ Cases that parentheses have an impact<br/>
 4+4^2 = 20<br/>
 (4+4)^2 = 64<br/>
 
-
+<br/>
 Overall most of the new grammar decisions were based around how haskell handles integer operations. There were few special and unexpected cases to handle. 
 
 ## Known Errors:
