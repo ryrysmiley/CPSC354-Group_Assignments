@@ -170,9 +170,9 @@ nbv m = ii_int (int_ii m)
 -- Testing
 ----------
 main = do
-    print $ ii_int(-1)
-    print $ float_qq(addQ (QQ (ii_int 2) (pp_int 4)) (QQ (ii_int 1) (pp_int 2)))
-    print $ ii_int(5) == ii_int(-5)
-    print $ nbv (ii_int(5))
-    print $ normalizeI (ii_int(5))
+    print $ int_nn (multN (nn_int 4) (nn_int 3)) -- 12
+    print $ int_nn (divN (nn_int 12) (pp_int 4)) -- 3
+    print $ float_qq (addQ (QQ (ii_int 1) (pp_int 2)) (QQ (ii_int 1) (pp_int 2))) -- 1.0
+    print $ float_qq (multQ (QQ (ii_int 1) (pp_int 2)) (QQ (ii_int 1) (pp_int 2))) -- 0.25
+    
 
