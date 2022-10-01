@@ -21,22 +21,25 @@
 4. Addition, Subtraction
 
 ## Reasoning:
-The design influence is based on PEMDAS and haskell integer operations. The new operations not explicit put in PEMDAS are Modulus, Absolute Value, and Negative.
+The design influence is based on PEMDAS and haskell integer operations. The new operations not explicit put in PEMDAS are Modulus, Absolute Value, and Negative. Parentheses will also be explained to specify its functionality.
 
-Modulus - Same order as multiplication and division. Follows how other languages and calculators would order modulus.
+### Modulus
+Same order as multiplication and division. Follows how other languages and calculators would order modulus.
 <br/>
 1+2%3 = 3<br/>
 1*2%3 = 2<br/>
 1/2%3 = 0<br/>
 
-Absolute Value - This operation can be seen as similar to parentheses and in this case it still acts as one. Within the bars of absolute value there will always be an expression that will eventually be converted to positive. Even though it seems odd to place it on the same level as exponents and negative, it properly functions as intended. Negative and Exponent on the outside of an absolute value function will always apply after it finishes because it still acts as a parentheses. The absolute value function also follows other calculators.
+### Absolute Value
+This operation can be seen as similar to parentheses and in this case it still acts as one. Within the bars of absolute value there will always be an expression that will eventually be converted to positive. Even though it seems odd to place it on the same level as exponents and negative, it properly functions as intended. Negative and Exponent on the outside of an absolute value function will always apply after it finishes because it still acts as a parentheses. The absolute value function also follows other calculators.
 <br/>
 |2-4| = 2<br/>
 |2-4|^3 = 8<br/>
 -|2-4| = -2<br/>
 
 
-Negative - The negative sign for an integer works in simple cases and is simple to understand. Exponents properly interact with negatives as it will not apply the negative until after the exponent operation (unless there are parentheses with the negative). There are unexpected interactions with negative numbers and division which I investigated. After investigating haskell integer operations I found that they matched these odd cases. Overall negative works as intended.
+### Negative
+The negative sign for an integer works in simple cases and is simple to understand. Exponents properly interact with negatives as it will not apply the negative until after the exponent operation (unless there are parentheses with the negative). There are unexpected interactions with negative numbers and division which I investigated. After investigating haskell integer operations I found that they matched these odd cases. Overall negative works as intended.
 <br/>
 -5 = -5<br/>
 1+2*-3 = -9<br/>
@@ -45,7 +48,8 @@ Negative - The negative sign for an integer works in simple cases and is simple 
 -4^2 = -16<br/>
 (-4)^2 = 16<br/>
 
-Parentheses - These are handled properly. In the details of the assignment specific examples were described to reference. Parentheses only cause a different result when they are overriding the order of operations. In this calculator it does output correctly for parentheses overriding operations. Some examples found in negative as well.
+### Parentheses
+These are handled properly. In the details of the assignment specific examples were described to reference. Parentheses only cause a different result when they are overriding the order of operations. In this calculator it does output correctly for parentheses overriding operations. Some examples found in negative as well.
 <br/>
 Cases that don't need parentheses<br/>
 1+2*3 = 1+(2*3) <br/>
