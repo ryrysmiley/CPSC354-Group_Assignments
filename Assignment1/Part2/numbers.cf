@@ -7,7 +7,6 @@ Mod. Exp1 ::= Exp1 "%" Exp2 ;
 
 Neg. Exp2 ::= "-" Exp ;
 Abs. Exp2 ::= "|" Exp "|" ;
-
 Expo. Exp2 ::= Exp2 "^" Exp3 ;
 
 Paren. Exp3 ::= "(" Exp ")" ;
