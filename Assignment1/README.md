@@ -5,8 +5,11 @@
 # Part 2
 ## Interesting Points:
 1. Giving freedom of design within reason has benefits:
+    <br/>
     -Heavy consideration of edge cases
+    <br/>
     -Forces one to justify and understand every design decision
+    <br/>
     -Encourages researching what others implemented for inspiration and learning
 2. Although not many edge cases I found the negative operations interesting in how it does floor division.
 3. This assignment forced me to justify my decisions while I still felt like I was just following PEMDAS and previously done interpreters. When I tried to explain what I implemented, it did not feel totally correct to just reference how it functions the same as other calculators. Perhaps that is something to look into.
