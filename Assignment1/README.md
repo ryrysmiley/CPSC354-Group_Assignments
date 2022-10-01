@@ -37,6 +37,7 @@ Absolute Value - This operation can be seen as similar to parentheses and in thi
 
 
 Negative - The negative sign for an integer works in simple cases and is simple to understand. Exponents properly interact with negatives as it will not apply the negative until after the exponent operation (unless there are parentheses with the negative). There are unexpected interactions with negative numbers and division which I investigated. After investigating haskell integer operations I found that they matched these odd cases. Overall negative works as intended.
+
 <br/>
 -5 = -5<br/>
 1+2*-3 = -9<br/>
@@ -44,6 +45,22 @@ Negative - The negative sign for an integer works in simple cases and is simple 
 (-4)/10 = -1<br/>
 -4^2 = -16<br/>
 (-4)^2 = 16<br/>
+
+Parentheses - These are handled properly. In the details of the assignment specific examples were described to reference. Parentheses only cause a different result when they are overriding the order of operations. In this calculator it does output correctly for parentheses overriding operations. Some examples found in negative as well.
+
+
+<br/>
+Cases that don't need parentheses<br/>
+1+2*3 = 1+(2*3) <br/>
+2^3+4 = (2^3)+4 <br/>
+2^3/4^5 = (2^3)/(4^5) <br/> 
+
+Cases that parentheses have an impact<br/>
+1+2*3 = 7<br/>
+(1+2)*3 = 9<br/>
+4+4^2 = 20<br/>
+(4+4)^2 = 64<br/>
+
 
 Overall most of the new grammar decisions were based around how haskell handles integer operations. There were few special and unexpected cases to handle. 
 
