@@ -20,3 +20,16 @@
 !LambdaNat3.cf
 !LambdaNat4.cf
 !LambdaNat5.cf
+
+!LambdaNat1.lc
+!LambdaNat2.lc
+!LambdaNat3.lc
+!LambdaNat4.lc
+!LambdaNat5.lc
+
+!LambdaNat.cabal
+
+!app
+!grammar
+!src
+!test
