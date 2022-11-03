@@ -1,2 +1,15 @@
-*.y.*
-*.bak
+*
+!README.md
+!dockerfile
+!build.sh
+!stack.yaml
+!Main.hs
+!Interpreter.hs
+!exercise.lc
+
+!LambdaNat0.cf
+!LambdaNat1.cf
+!LambdaNat2.cf
+!LambdaNat3.cf
+!LambdaNat4.cf
+!LambdaNat5.cf
