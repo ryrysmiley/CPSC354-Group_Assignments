@@ -2,3 +2,4 @@
 ## Members
 * Kai Itokazu
 * Ryley Jue
+* Cole Matsueda
