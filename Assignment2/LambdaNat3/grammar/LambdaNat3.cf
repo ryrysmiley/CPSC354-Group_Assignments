@@ -1,17 +1,22 @@
------------------------------------------
--- Lambda Calculus with Natural Numbers 1
------------------------------------------
+------------------
+-- Lambda Calculus
+------------------
 
-Prog.   Program ::= Exp ; 
-EAbs.   Exp1 ::= "\\" Id "." Exp ;  
-EApp.   Exp2 ::= Exp2 Exp3 ; 
-ENat0.  Exp3 ::= "0" ; 
-ENatS.  Exp3 ::= "S" Exp3 ; -- "S" is now a 'terminal symbol' and cannot be parsed as an identifier
-EVar.   Exp4 ::= Id ; 
+Prog.      Program ::= Exp ;
+EAbs.      Exp1 ::= "\\" Id "." Exp ;
+EIf.       Exp2 ::= "if" Exp "=" Exp "then" Exp "else" Exp ;
+ELet.      Exp2 ::= "let" Id "=" Exp "in" Exp ;               -- let x = A in B is sugar for (\x.B)A
+ERec.      Exp2 ::= "let rec" Id "=" Exp "in" Exp ;
+EMinusOne. Exp2 ::= "minus_one" Exp ;                         -- because we do not have pattern matching in LambdaNat
+EApp.      Exp3 ::= Exp3 Exp4 ;
+ENat0.     Exp4 ::= "0" ;
+ENatS.     Exp4 ::= "S" Exp4 ;
+EVar.      Exp5 ::= Id ;
+internal EFix. Exp2 ::= "fix" Exp ;                           -- to implement "let rec"
 
-coercions Exp 4 ;
+coercions Exp 5 ; 
 
-token Id (letter (letter | digit | '_')*) ;
+token Id (letter (letter | digit | '_')*) ; -- Identifiers start with a letter followed by any number of letters, digits, or underscores
 
 comment "//" ;
 comment "/*" "*/" ;
