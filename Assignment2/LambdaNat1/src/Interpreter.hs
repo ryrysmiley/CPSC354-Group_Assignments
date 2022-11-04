@@ -11,6 +11,8 @@ evalCBN :: Exp -> Exp
 evalCBN (EApp e1 e2) = case (evalCBN e1) of
     (EAbs i e3) -> evalCBN (subst i e2 e3)
     e3 -> EApp e3 e2
+evalCBN ENat0 = ENat0 
+evalCBN (ENatS e) = ENatS (evalCBN e)
 ----------------------------------------------------
 --- YOUR CODE goes here for extending the interpreter
 ----------------------------------------------------
@@ -39,3 +41,5 @@ subst id s (EAbs id1 e1) =
 ----------------------------------------------------------------
 --- YOUR CODE goes here if subst needs to be extended as well
 ----------------------------------------------------------------
+subst id s ENat0 = ENat0 
+subst id s (ENatS e) = ENatS (subst id s e)
