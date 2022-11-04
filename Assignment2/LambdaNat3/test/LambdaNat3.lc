@@ -1,5 +1,4 @@
 // Uncomment any one of the following lines or paste one of the comments in the command line
-// Do not run the interpreter without predicting a result first
 
 // (\x.x) a          //echo "(\x.x)a" | stack exec LambdaNat-exe
 // \x.x a            //echo "\x.x a" | stack exec LambdaNat-exe
@@ -14,8 +13,40 @@
 // (\x.\y.x) (a b c) //echo "(\x.\y.x) (a b c)" | stack exec LambdaNat-exe
 // (\x.\y.y) (a b c) //echo "(\x.\y.y) (a b c)" | stack exec LambdaNat-exe
 
-// make up your own
+// CUSTOM TESTS
 
+/* minus_one tests */
 // minus_one (minus_one (S S 0))
 
-let x = A in B x
+/* syntax sugar of lambda calculus tests */
+// (\x.\y.\z.x y z) a b c
+// let x = A in B x
+// let x = A in B
+// let x = A in x y z
+// let x = test in x x x y z
+
+// let x = A in (let y = B in x y) 
+// let x = A in (let y = B in y x) 
+// let x = A in (let y = B in y) x 
+// let x = A in (let y = B in x) y 
+// let y = B in (let x = A in x) y 
+// let z = C in (let y = B in (let x = A in x) y) z 
+// let p = D in (let z = C in (let y = B in (let x = A in x) y) z) p 
+
+let plus = \m.\n.\f.\x. m f (n f x)
+in
+let two = \f.\x. f (f x)
+in
+let one = \f.\x.f x
+in
+plus two one
+
+//let z = (let y = (let x = A in x) in y) in z
+//explanation of above ((\z.z)((\y.y)((\x.x) A)))
+
+// if else tests
+// if a = a then match else different
+// if a = b then match else different
+// if minus_one (S S 0) = S 0 then match else different
+
+/* let rec tests*/
