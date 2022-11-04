@@ -1,2 +1,5 @@
-//(\x.S x) S S 0
-S((\x.x) 0)
+// (\x.S x) S S 0
+// S((\x.x) 0)
+(\x.\y.\z.x y z) a b c
+// (\x.\y.y) (a b c)
+//(\x.\y.x) (a b c) //echo "(\x.\y.x) (a b c)" | stack exec LambdaNat-exe

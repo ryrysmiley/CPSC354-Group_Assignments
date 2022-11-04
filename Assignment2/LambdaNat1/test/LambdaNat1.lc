@@ -15,4 +15,7 @@
 // (\x.\y.y) (a b c) //echo "(\x.\y.y) (a b c)" | stack exec LambdaNat-exe
 
 // make up your own
-S((\x.x) 0)
+// S((\x.x) 0)
+// S((\x.\y.x y) S S 0)
+// S((\x.\y.x y) S 0)
+(\x.\y.\z.x y z) one two three
