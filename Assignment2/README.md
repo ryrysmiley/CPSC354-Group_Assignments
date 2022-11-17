@@ -30,6 +30,8 @@ The example given (#:#) is a union between 2 sets, which is the same as {#} U {#
 
 
 ## Discussion
+_ANSWER THESE_
+
 **Explain what changes where made in LambdaNat4 in order to accommodate multiple test cases (separated by ;;) in the same file.**
 
 **Reflect on the differences between LambdaNat5 and the Calculator. In LambdaNat5, why can't we implement arithmetic using the simple**
