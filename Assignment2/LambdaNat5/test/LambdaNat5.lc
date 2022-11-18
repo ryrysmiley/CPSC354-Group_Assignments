@@ -10,3 +10,21 @@ fact 5
 
 if 1+2*3 = 8-1 then true else false 
 // true and false here are (free) variables that do not have in-built meaning ... a more common way to encode true and false in the absence of a type of Booleans is to use integers 1 and 0 and that is what I recommend as well
+
+;;
+
+hd a:b:c:#
+
+;;
+
+tl a:b:c:#
+
+;;
+
+hd ((\ x . x) a : #)
+
+;;
+
+3 less_equal 2
+
+;; 

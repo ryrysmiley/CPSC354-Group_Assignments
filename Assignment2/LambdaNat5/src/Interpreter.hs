@@ -17,10 +17,28 @@ evalCBN (ELet i e1 e2) = evalCBN (EApp (EAbs i e2) e1)
 evalCBN (ERec i e1 e2) = evalCBN (EApp (EAbs i e2) (EFix (EAbs i e1)))
 evalCBN (EFix e) = evalCBN (EApp e (EFix e)) 
 -- evalCBN ENil 
+evalCBN ENil = ENil
 -- evalCBN (ECons e1 e2) 
+evalCBN (ECons e1 e2) = ECons (evalCBN e1) (evalCBN e2)
 -- evalCBN (EHd e) 
+evalCBN (EHd e) = case (evalCBN e) of
+    (ECons e1 e2) -> e1
+    e' -> EHd e'
 -- evalCBN (ETl e) 
+evalCBN (ETl e) = case (evalCBN e) of
+    (ECons e1 e2) -> e2
+    e' -> ETl e'
 -- evalCBN (ELE e1 e2)
+evalCBN (ELE e1 e2) = case (evalCBN e1) of
+    (EInt n) -> case (evalCBN e2) of
+        (EInt m) -> EInt (if n <= m then 1 else 0)
+        e2' -> ELE (EInt n) e2'
+    e1' -> case (evalCBN e2) of 
+        (EInt m) -> ELE e1' (EInt m)
+        e2' -> ELE e1' e2'
+
+
+
 evalCBN (EPlus e1 e2) = case (evalCBN e1) of
     (EInt n) -> case (evalCBN e2) of
         (EInt m) -> EInt (n+m)
