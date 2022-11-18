@@ -33,3 +33,6 @@
 !grammar
 !src
 !test
+
+!solutions.lc
+!solutions.hs
