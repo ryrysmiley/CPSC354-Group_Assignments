@@ -1,11 +1,66 @@
-/*is_empty function*/
+//is_empty
+let rec is_empty = \ list.
+if list = #
+then 1
+else 0
+in is_empty a:# 
 
-/*fib function*/
+;;
 
-/*length function*/
+//fib function
+let rec fib = \ Int.
+if Int = 0
+then 0
+else if Int = 1
+then 1
+else fib (Int - 1) + fib (Int - 2)
+in fib 6
 
-/*even function*/
+;;
 
-/*reverse function (with append)*/
+//length function
+let rec length = \ list.
+if list = #
+then 0
+else 1 + length (tl list)
+in length a:b:c:#
 
-/*weave function*/
+;;
+
+//even function
+let rec even = \ list.
+if list = #
+then 1
+else if (tl list) = #
+then 0
+else even (tl (tl list))
+in even a1:a2:a3:a4:a5:#
+
+;;
+
+//reverse function (with append)
+let rec append = \ list1. \list2.
+if list1 = #
+then list2
+else (hd list1):(append (tl list1) list2)
+in 
+let rec reverse = \ list.
+if list = #
+then #
+else append (reverse (tl list)) (hd list):#
+in reverse a:b:c:#
+
+;;
+
+//weave function (if output lists are sorted the input lists are sorted)
+let rec weave = \ list1. \ list2.
+if list1 = #
+then list2
+else if list2 = #
+then list1
+else if (hd list1) less_equal (hd list2) = 1
+then (hd list1):(weave (tl list1) list2)
+else (hd list2):(weave list1 (tl list2))
+in weave (0:1:4:#) (2:3:5:#)
+
+;;

@@ -21,13 +21,9 @@ evalCBN ENil = ENil
 -- evalCBN (ECons e1 e2) 
 evalCBN (ECons e1 e2) = ECons (evalCBN e1) (evalCBN e2)
 -- evalCBN (EHd e) 
-evalCBN (EHd e) = case (evalCBN e) of
-    (ECons e1 e2) -> e1
-    e' -> EHd e'
+evalCBN (EHd e) = case (evalCBN e) of (ECons e1 e2) -> evalCBN e1
 -- evalCBN (ETl e) 
-evalCBN (ETl e) = case (evalCBN e) of
-    (ECons e1 e2) -> e2
-    e' -> ETl e'
+evalCBN (ETl e) = case (evalCBN e) of (ECons e1 e2) -> evalCBN e2
 -- evalCBN (ELE e1 e2)
 evalCBN (ELE e1 e2) = case (evalCBN e1) of
     (EInt n) -> case (evalCBN e2) of
@@ -92,3 +88,8 @@ subst id s (EPlus e l) = EPlus (subst id s e) (subst id s l)
 subst id s (EMinus e l) = EMinus (subst id s e) (subst id s l)
 subst id s (ETimes e l) = ETimes (subst id s e) (subst id s l)
 -- add the missing cases
+subst id s (EHd e) = EHd(subst id s e)
+subst id s (ETl e) = ETl(subst id s e)
+subst id s (ENil) = ENil
+subst id s (ECons e1 e2) = ECons (subst id s e1) (subst id s e2)
+subst id s (ELE e1 e2) = ELE (subst id s e1) (subst id s e2)
