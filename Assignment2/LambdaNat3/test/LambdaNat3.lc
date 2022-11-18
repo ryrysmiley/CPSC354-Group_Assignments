@@ -33,13 +33,13 @@
 // let z = C in (let y = B in (let x = A in x) y) z 
 // let p = D in (let z = C in (let y = B in (let x = A in x) y) z) p 
 
-let plus = \m.\n.\f.\x. m f (n f x)
-in
-let two = \f.\x. f (f x)
-in
-let one = \f.\x.f x
-in
-plus two one
+//let plus = \m.\n.\f.\x. m f (n f x)
+//in
+//let two = \f.\x. f (f x)
+//in
+//let one = \f.\x.f x
+//in
+//plus two one
 
 //let z = (let y = (let x = A in x) in y) in z
 //explanation of above ((\z.z)((\y.y)((\x.x) A)))
@@ -50,3 +50,8 @@ plus two one
 // if minus_one (S S 0) = S 0 then match else different
 
 /* let rec tests*/
+
+
+(\ x . if x = 0 then x else c (f (minus_one x))) 
+(let rec f = \ x . S x in f 0) 
+(let f = \ x . x x in let mid = f c in f mid)
