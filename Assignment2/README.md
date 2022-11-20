@@ -34,16 +34,16 @@ _ANSWER THESE_
 
 **Explain what changes where made in LambdaNat4 in order to accommodate multiple test cases (separated by ;;) in the same file.**
 
-The programming language, rather than taking a single test case, it takes a list of evaulations which is why we needed to make the changes.
+Now, a Prog would be able to be a list of expressions separated by ;;/ This allows a file to contain seberal expressions. The programming language, rather than taking a single test case, it takes a list of evaulations which is why we needed to make the changes.
 
 **Reflect on the differences between LambdaNat5 and the Calculator. In LambdaNat5, why can't we implement arithmetic using the simple**
 ```evalCBN (EPlus e1 e2) = (evalCBN e1) + (evalCBN e2)```
 __similar to what we have done in the calculator? Are +,-,* implemented using call by name or call by value? What could be a reason for this choice?__
 
-**Reflect on the differences between LambdaNat5 and Haskell. In your experience from this assignment, how does writing code in LambdaNat5 and Haskell compare? How far did we come in implementing a functional programming language? What is missing? What can you say about how one should go about extending LambdaNat5 to a more powerful functional language (such as Haskell)?**
-
 While there are positives to having a programming language this open ended, rules are important to make communication clear. Adding some limitations to how flexible we can with our new programming language allows us a new level of precision oging forward. For example, Haskell has specified that something like evalCBN x1 x2 is the same thing as (evalCBN x1 x2) is the same thing as evalCBN (x1) (x2). By adding more specifications for the ways in which we want our language to be delomoted and adding some low level syntax clarification, we can make our program go a long way. Haskell is more strongly typed than our language so it only accepts Haskell integers which have specific properties while our language isn’t strongly typed and it will still try and parse like a+b and not give an error so we have to add more checks.
 
-**Did you notice that weave satisfies the invariant "the output-list is sorted if the input-lists are sorted"? Can you use it to prove the correctness of sort (that is, that sort actually does sort)?**
 
-We can say that it sorts correctly because if both lists are sorted, the final list is always sorted. However, if they are not sorted, it should not end up sorted.
+**Reflect on the differences between LambdaNat5 and Haskell. In your experience from this assignment, how does writing code in LambdaNat5 and Haskell compare? How far did we come in implementing a functional programming language? What is missing? What can you say about how one should go about extending LambdaNat5 to a more powerful functional language (such as Haskell)?**
+
+
+**Did you notice that weave satisfies the invariant "the output-list is sorted if the input-lists are sorted"? Can you use it to prove the correctness of sort (that is, that sort actually does sort)?**
