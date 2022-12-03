@@ -1,0 +1,5 @@
+*
+!.gitignore
+!Calculator.hs
+!Interpreter.hs
+!numbers.cf

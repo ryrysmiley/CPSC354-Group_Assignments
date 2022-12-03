@@ -170,9 +170,14 @@ nbv m = ii_int (int_ii m)
 -- Testing
 ----------
 main = do
+    print $ addN (S (S O)) (S (S (S O))) -- S (S (S (S (S O))))
+    print $ multN (S (S O)) (S (S (S O))) -- S (S (S (S (S (S (S (S O)))))))
+    print $ (divN (nn_int 3) (pp_int 2)) -- S O
     print $ int_nn (multN (nn_int 4) (nn_int 3)) -- 12
     print $ int_nn (divN (nn_int 12) (pp_int 4)) -- 3
     print $ float_qq (addQ (QQ (ii_int 1) (pp_int 2)) (QQ (ii_int 1) (pp_int 2))) -- 1.0
     print $ float_qq (multQ (QQ (ii_int 1) (pp_int 2)) (QQ (ii_int 1) (pp_int 2))) -- 0.25
+    print $ negI (II (nn_int 1) (nn_int 2)) -- II (S (S O)) (S O)
+    print $ (QQ (ii_int 1) (pp_int 2)) == (QQ (ii_int 2) (pp_int 4)) -- True
     
 
