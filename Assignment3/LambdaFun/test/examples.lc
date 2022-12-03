@@ -14,3 +14,41 @@ rec member = \x.\y. case y of {
     [] -> false, 
     (a:as) -> case x == a of { true -> true, _ -> member x as } };;
 
+-- isEmpty
+rec isEmpty = \x. case x of { [] -> true, _ -> false };;
+
+-- fib
+rec fib = \x. case x of { 
+    0 -> 0, 
+    1 -> 1, 
+    _ -> fib (x-1) + fib (x-2) };;
+
+-- length
+rec length = \x. case x of { 
+    [] -> 0, 
+    (a:as) -> 1 + length as };;
+    
+-- evenLength
+rec evenLength = \x. case x of { 
+    [] -> true, 
+    (a:[]) -> false, 
+    _ -> evenLength (tail (tail x)) };;
+
+-- append
+rec append = \x.\y. case x of { 
+    [] -> y, 
+    _ -> (head x) : (append (tail x) y) };;
+    
+-- reverse
+rec reverse = \x. case x of { 
+    [] -> [], 
+    _ -> append (reverse (tail x)) [(head x)] };;
+
+-- weave
+rec weave = \x.\y. case x of { 
+    [] -> y, 
+    _ -> case y of { 
+        [] -> x, 
+        _ -> case (head x) < (head y) of { 
+            true -> (head x) : (weave (tail x) y), 
+            _ -> (head y) : (weave x (tail y)) } } };;

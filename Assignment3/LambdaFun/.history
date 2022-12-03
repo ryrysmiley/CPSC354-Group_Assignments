@@ -1,0 +1,100 @@
+:quit
+:w
+weave [3,4,5] [1,2];;
+weave [3,5,2] [1,2];;
+:load test/examples.lc 
+sortTwoLists [4,5] [1,2];;
+sortTwoLists [1,2] [4,5];;
+sortTwoLists [1,2] [4,5]
+:load test/examples.lc 
+weave [] [1] ;;
+weave [1] [2,3] ;;
+weave [1,] [2,3] ;;
+weave [1,2,3] [2,3] ;;
+weave [1,2,3] [] ;;
+weave [1,2,3] [4,6];;
+:load test/examples.lc 
+:load test/examples.lc 
+weave [] [1,2,3];;
+weave [1,] [];;
+weave [1,2,3] [];;
+:load test/examples.lc 
+:load test/examples.lc 
+weave [1,2,3] [4,5];;
+:load test/examples.lc 
+:load test/examples.lc 
+:load test/examples.lc 
+weave [] [1,2,3];;
+weave [1,2,3] [3,4];;
+weave [1,2,3] [3,4];;
+weave [1,2,3] [];;
+weave [1,2,3] []
+:load test/examples.lc 
+weave [1,2,3] [4,5,6];;
+:load test/examples.lc 
+:load test/examples.lc 
+weave [1,2,3] [4,5,6];;
+:load test/examples.lc 
+:load test/examples.lc 
+:load test/examples.lc 
+:load test/examples.lc 
+:load test/examples.lc 
+reverse [1];;
+reverse [];;
+reverse []
+reverse [1,2,3,4];;
+:load test/examples.lc 
+append [2,4] [1,2];;
+:load test/examples.lc
+member 1 [2,3];;
+append [1,2] [2,3];;
+append [1,2] [2,3]
+:load test/examples.lc 
+evenLength [];;
+evenLength [1];;
+evenLength [1,2];;
+:load test/examples.lc 
+:load test/examples.lc 
+:load test/examples.lc 
+:load test/examples.lc 
+:load test/examples.lc 
+:load test/examples.lc 
+:load test/examples.lc 
+:load test/examples.lc 
+:load test/examples.lc 
+:load test/examples.lc 
+tail [1];;
+:load test/examples.lc 
+:load test/examples.lc 
+:load test/examples.lc 
+:load test/examples.lc 
+:load test/examples.lc 
+:load test/examples.lc 
+:load test/examples.lc 
+(head [1]):[2,3];;
+[append [1,2],[3,4]];;
+[head [1],[2,3]];;
+append [1,2] [3,4];;
+:load test/examples.lc 
+append [1,2] [3,4];;
+:load test/examples.lc 
+append [2,3] [1,2];;
+append [2,3] 4;;
+:load test/examples.lc 
+:quit
+:help
+tail [2,4,5];;
+head [1,2,3];;
+even 9;;
+even 9
+append [1,2] [2,3];;
+append [1,2] [2,3];;
+:load test/examples.lc 
+:load test/examples.lc 
+reverse [1,2,3];;
+:load test/examples.lc 
+:load test/examples.lc 
+:load test/examples.lc 
+even 5;;
+even 5;
+even 10;;
