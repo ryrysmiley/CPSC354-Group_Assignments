@@ -1,4 +1,8 @@
 :quit
+length [1,2,4];;
+length [1,2,4]
+:load test/examples.lc
+:quit
 :w
 weave [3,4,5] [1,2];;
 weave [3,5,2] [1,2];;
@@ -94,7 +98,3 @@ append [1,2] [2,3];;
 reverse [1,2,3];;
 :load test/examples.lc 
 :load test/examples.lc 
-:load test/examples.lc 
-even 5;;
-even 5;
-even 10;;
