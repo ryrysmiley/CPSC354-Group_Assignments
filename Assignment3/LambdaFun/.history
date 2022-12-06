@@ -1,4 +1,53 @@
 :quit
+insert 1 [2,3];;
+insert 1 [2,3];;
+insert 1 [2,3]
+insert 3 (insert 1 (insert 4 (insert 2 (insert 5 nil))));;
+:load test/sort.lc
+insert 3 (insert 1 (insert 4 (insert 2 (insert 5 nil))));;
+insert 3 (insert 1 (insert 4 (insert 2 (insert 5 nil))));;
+:load test/sort.lc
+:load test/sort.lc
+:quit
+insert 3 (insert 1 (insert 4 (insert 2 (insert 5 nil))));;
+insert 3 (insert 1 (insert 4 (insert 2 (insert 5 nil))));;
+insert 5 nil;;
+:load test/sort.lc
+:quit
+:qiut
+reload;;
+reload
+insert 3 (insert 1 (insert 4 (insert 2 (insert 5 []))));;
+insert 5 nil;;
+:load test/sort.lc
+insert 5 nill;;
+between;;
+between
+:load test/inbetween_exercises.lc
+insert 3 [1,2,3];;
+insert 3 (insert 1 (insert 4 (insert 2 (insert 5 nil))));;
+insert 5 [6,7,8];;
+insert 5 ];;
+insert 5 [3,2,1];;
+insert 5 [3,2,1]
+insert 5 [1,2,2,1];;
+insert 5 [1,2,3];;
+insert 5 [1,2,3]
+:reload
+insert
+ls
+:load test/sort.lc
+:reload
+reload ;;
+reload
+print (insert 5 (insert 4 (insert 3 (insert 2 (insert 1 nil)))));;
+insert 3 (insert 1 (insert 4 (insert 2 (insert 5 nil))));;
+:load test/linked-list.lc
+:load test/linked-list.lc
+:load test/linked-list.lc
+:load test/examp.lc 
+:load linked-list.lc
+:quit
 length [1,2,4];;
 length [1,2,4]
 :load test/examples.lc
@@ -49,52 +98,3 @@ reverse []
 reverse [1,2,3,4];;
 :load test/examples.lc 
 append [2,4] [1,2];;
-:load test/examples.lc
-member 1 [2,3];;
-append [1,2] [2,3];;
-append [1,2] [2,3]
-:load test/examples.lc 
-evenLength [];;
-evenLength [1];;
-evenLength [1,2];;
-:load test/examples.lc 
-:load test/examples.lc 
-:load test/examples.lc 
-:load test/examples.lc 
-:load test/examples.lc 
-:load test/examples.lc 
-:load test/examples.lc 
-:load test/examples.lc 
-:load test/examples.lc 
-:load test/examples.lc 
-tail [1];;
-:load test/examples.lc 
-:load test/examples.lc 
-:load test/examples.lc 
-:load test/examples.lc 
-:load test/examples.lc 
-:load test/examples.lc 
-:load test/examples.lc 
-(head [1]):[2,3];;
-[append [1,2],[3,4]];;
-[head [1],[2,3]];;
-append [1,2] [3,4];;
-:load test/examples.lc 
-append [1,2] [3,4];;
-:load test/examples.lc 
-append [2,3] [1,2];;
-append [2,3] 4;;
-:load test/examples.lc 
-:quit
-:help
-tail [2,4,5];;
-head [1,2,3];;
-even 9;;
-even 9
-append [1,2] [2,3];;
-append [1,2] [2,3];;
-:load test/examples.lc 
-:load test/examples.lc 
-reverse [1,2,3];;
-:load test/examples.lc 
-:load test/examples.lc 
