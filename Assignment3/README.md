@@ -25,4 +25,4 @@ function merge (Left_half, Right_half):
 * None
 
 # Observations
-
+An observation we found was that when traversing the linked list to insert the element at the correct position, we kept running into errors when trying to print and we realized it was because we weren't returning the actual pointer. 
