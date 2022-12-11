@@ -3,7 +3,7 @@
 # Critical Appraisal
 Pseudo Code of Merge sort:\
 function mergesort( Array ):\
-__if "length of Array less than or equal to 1"\
+&nbsp;if "length of Array less than or equal to 1"\
     return Array\
     
   split Array in half\
