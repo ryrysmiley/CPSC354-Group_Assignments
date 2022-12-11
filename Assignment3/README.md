@@ -21,4 +21,8 @@ function merge (Left_half, Right_half):\
 
 &nbsp;&nbsp;return the new array with the values from both the left and right halves.\
   
-  
+## Runtime Errors
+* None
+
+# Observations
+
