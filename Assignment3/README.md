@@ -10,8 +10,8 @@ function mergesort( Array ):\
 &nbsp;&nbsp;left_side = store left side of array
 &nbsp;&nbsp;right_side = store tight side of array
   
-&nbsp;&nbsp;left_side = recursively call mergesort function with the left half as argument \ 
-&nbsp;&nbsp;right_side = recursively call mergesort function with the right half as argument 
+&nbsp;&nbsp;left_side = recursively call mergesort function with the left half as argument\ 
+&nbsp;&nbsp;right_side = recursively call mergesort function with the right half as argument\
   
 &nbsp;&nbsp;return both halfs as two separate arrays, left_side and right_side
   
