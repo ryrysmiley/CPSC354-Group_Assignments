@@ -1,6 +1,6 @@
 ## LAMBDA FUN
 
-#Critical Appraisal
+# Critical Appraisal
 Pseudo Code of Merge sort:
 function mergesort( Array ):
   if "length of Array less than or equal to 1"
