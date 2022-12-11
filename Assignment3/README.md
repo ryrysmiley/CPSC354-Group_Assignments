@@ -1,6 +1,6 @@
 ## LAMBDA FUN
 
-##Critical Appraisal
+#Critical Appraisal
 Pseudo Code of Merge sort:
 function mergesort( Array ):
   if "length of Array less than or equal to 1"
@@ -20,3 +20,5 @@ function merge (Left_half, Right_half):
   from that half and append to a new array and repeat process until both halves no longer contain any values. 
   
   return the new array with the values from both the left and right halves.
+  
+  
