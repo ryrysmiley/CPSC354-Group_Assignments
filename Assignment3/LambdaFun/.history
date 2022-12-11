@@ -1,100 +1,100 @@
 :quit
-insert 1 [2,3];;
-insert 1 [2,3];;
-insert 1 [2,3]
-insert 3 (insert 1 (insert 4 (insert 2 (insert 5 nil))));;
+ç
+print (mergesort (cons 1 (cons 3 (cons 2 (cons 4 nil))))) ;;
+merge (cons 1 (cons 3 nil)) (cons 2 (cons 4 nil)) ;;
+mergesort (cons 6 (cons 4 (cons 2 nil))) ;;
+:reload
+mergesort (cons 6 (cons 4 (cons 2 nil))) ;;
+mergesort (cons 6 (cons 4 (cons 2 nil))) ;;
 :load test/sort.lc
-insert 3 (insert 1 (insert 4 (insert 2 (insert 5 nil))));;
-insert 3 (insert 1 (insert 4 (insert 2 (insert 5 nil))));;
+:load test/sort.lc
+mergesort (cons 6 (cons 4 (cons 2 nil))) ;;
+:load test/sort.lc
+:load test/sort.lc
+:quit
+:qiot
+:quit
+print (mergesort (cons 1 (cons 3 (cons 2 (cons 4 nil))))) ;;
+mergesort (cons 1 (cons 3 (cons 2 (cons 4 nil)))) ;;
+print (merge (cons 1 (cons 3 nil)) (cons 2 (cons 4 nil))) ;;
+merge (cons 1 (cons 3 nil)) (cons 2 (cons 4 nil)) ;;
+mergesort (insert 3 (insert 1 (insert 4 (insert 2 (insert 5 nil))))) ;;
+:load test/sort.lc
+:quit
+mergesort (insert 3 (insert 1 (insert 4 (insert 2 (insert 5 nil))))) ;;
 :load test/sort.lc
 :load test/sort.lc
 :quit
+:reload
+:reload
+print(merge (insert 3 (insert 1 (insert 4 (insert 2 (insert 5 nil))))) (insert 3 (insert 2 nil))) ;;
+merge (insert 3 (insert 1 (insert 4 (insert 2 (insert 5 nil))))) (insert 3 (insert 2 nil)) ;;
+merge (insert 3 (insert 1 (insert 4 (insert 2 (insert 5 nil)))inser)( ;;
 insert 3 (insert 1 (insert 4 (insert 2 (insert 5 nil))));;
-insert 3 (insert 1 (insert 4 (insert 2 (insert 5 nil))));;
-insert 5 nil;;
-:load test/sort.lc
-:quit
-:qiut
-reload;;
-reload
-insert 3 (insert 1 (insert 4 (insert 2 (insert 5 []))));;
-insert 5 nil;;
-:load test/sort.lc
-insert 5 nill;;
-between;;
-between
-:load test/inbetween_exercises.lc
-insert 3 [1,2,3];;
-insert 3 (insert 1 (insert 4 (insert 2 (insert 5 nil))));;
-insert 5 [6,7,8];;
-insert 5 ];;
-insert 5 [3,2,1];;
-insert 5 [3,2,1]
-insert 5 [1,2,2,1];;
 insert 5 [1,2,3];;
-insert 5 [1,2,3]
+merge [1,2,3] [4,5,6];;
+:merge [1,2,3] [4,5,6];;
 :reload
-insert
-ls
-:load test/sort.lc
+sort (cons 3 (cons 1 (cons 4 (cons 2 (cons 5 nil)))));;
+print (sort (cons 6 (cons 4 (cons 2 nil))));;
 :reload
-reload ;;
-reload
+print (sort (cons 6 (cons 4 (cons 2 nil))));;
 print (insert 5 (insert 4 (insert 3 (insert 2 (insert 1 nil)))));;
 insert 3 (insert 1 (insert 4 (insert 2 (insert 5 nil))));;
-:load test/linked-list.lc
-:load test/linked-list.lc
-:load test/linked-list.lc
-:load test/examp.lc 
-:load linked-list.lc
+:load test/sort.lc
 :quit
-length [1,2,4];;
-length [1,2,4]
-:load test/examples.lc
-:quit
-:w
-weave [3,4,5] [1,2];;
-weave [3,5,2] [1,2];;
-:load test/examples.lc 
-sortTwoLists [4,5] [1,2];;
-sortTwoLists [1,2] [4,5];;
-sortTwoLists [1,2] [4,5]
-:load test/examples.lc 
-weave [] [1] ;;
-weave [1] [2,3] ;;
-weave [1,] [2,3] ;;
-weave [1,2,3] [2,3] ;;
-weave [1,2,3] [] ;;
-weave [1,2,3] [4,6];;
-:load test/examples.lc 
-:load test/examples.lc 
-weave [] [1,2,3];;
-weave [1,] [];;
-weave [1,2,3] [];;
-:load test/examples.lc 
-:load test/examples.lc 
-weave [1,2,3] [4,5];;
-:load test/examples.lc 
-:load test/examples.lc 
-:load test/examples.lc 
-weave [] [1,2,3];;
-weave [1,2,3] [3,4];;
-weave [1,2,3] [3,4];;
-weave [1,2,3] [];;
-weave [1,2,3] []
-:load test/examples.lc 
-weave [1,2,3] [4,5,6];;
-:load test/examples.lc 
-:load test/examples.lc 
-weave [1,2,3] [4,5,6];;
-:load test/examples.lc 
-:load test/examples.lc 
-:load test/examples.lc 
-:load test/examples.lc 
-:load test/examples.lc 
-reverse [1];;
-reverse [];;
-reverse []
-reverse [1,2,3,4];;
-:load test/examples.lc 
-append [2,4] [1,2];;
+:reload
+:reload
+insert 3 (insert 1 (insert 4 (insert 2 (insert 5 nil))));;
+insert 3 (insert 1 (insert 4 (insert 2 (insert 5 nil))));;
+:reload
+insert 3 (insert 1 (insert 4 (insert 2 (insert 5 nil))));;
+insert 3 (insert 1 (insert 4 (insert 2 (insert 5 nil))));;
+:reload
+print (cons 6 (cons 2 ( cons 1 nil)));;
+:reload
+insert 3 (insert 1 (insert 4 (insert 2 (insert 5 nil))));;
+nsert 3 (insert 1 (insert 4 (insert 2 (insert 5 nil))));;
+:load test/sort.lc
+:reload
+print (insert 4 [1,2,3]);;
+print (insert 4 [1,2,3]);;
+insert 4 [1,2,3];;
+:load test/sort.lc
+:load test/sort.lc
+:reload
+:reload
+print (insert 5 (insert 4 (insert 3 (insert 2 (insert 1 nil)))));;
+print (insert 5 (insert 4 (insert 3 (insert 2 (insert 1 nil)))));;
+insert 3 (insert 1 (insert 4 (insert 2 (insert 5 nil))));;
+:reload
+clera
+:reload
+sort (cons 3 (cons 1 (cons 4 (cons 2 (cons 5 [])))));;
+sort (cons 3 (cons 1 (cons 4 (cons 2 (cons 5 )))));;
+sort (cons 3 (cons 1 (cons 4 (cons 2 (cons 5 nil)))));;
+:load test/sort.lc
+:load test/exam.lc 
+:reload
+:reload
+sort (cons 3 (cons 1 (cons 4 (cons 2 (cons 5 nil)))));;
+print (insert 5 (insert 4 (insert 3 (insert 2 (insert 1 nil)))));;
+insert 3 (insert 1 (insert 4 (insert 2 (insert 5 nil))));;
+:reload
+print (cons 6 (cons 4 (cons 2 nil)));;
+print (cons 6 (cons 4 (cons 2 nil)));;
+print (insert 5 (insert 4 (insert 3 (insert 2 (insert 1 nil)))));;
+insert 3 (insert 1 (insert 4 (insert 2 (insert 5 nil))));;
+insert 4 [4,5,1,4];;
+insert 1 [2,3,4];;
+insert 5 [1,2,3];;
+:reload
+sort (cons 3 (cons 1 (cons 4 (cons 2 (cons 5 nil)))));;
+sort (cons 3 (cons 1 (cons 4 (cons 2 (cons 5 nil)))));;
+(sort (cons 6 (cons 4 (cons 2 nil))));;
+insert 3 (insert 1 (insert 4 (insert 2 (insert 5 nil))));;
+:reload
+insert 3 (insert 1 (insert 4 (insert 2 (insert 5 nil))));;ç
+insert 3 (insert 1 (insert 4 (insert 2 (insert 5 nil))));;
+insert 2 [];;
+insert 2 []ll

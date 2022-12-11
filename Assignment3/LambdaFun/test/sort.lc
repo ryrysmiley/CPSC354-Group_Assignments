@@ -29,9 +29,46 @@ rec print = \list.
 
 
 -- Implement a function insert n list that inserts a number n into a linked list list of numbers.
-rec insert = \x.\y. case y of{
-  [] -> [x],
-  (a:as) -> case x <= a of 
-    {true -> x:y, _ -> a:(insert x as) },
-    nil -> [x]
-  };;
+rec insert = \n. \list.
+    case !list of {
+        "NULL" -> cons n nil,
+        [e, a'] ->
+            case n <= e of {
+                true -> cons n list,
+                _ -> cons e (insert n a')
+            }
+    } ;;
+
+-- Implement insertion sort. That is, implement a function sort list that sorts a linked list list of numbers by repeatedly using insert
+rec sort = \list.
+    case !list of {
+        "NULL" -> nil,
+        [e, a'] -> insert e (sort a')
+    } ;;
+
+-- Implement a function merge list1 list2 that merges two lists into one
+-- Using merge sort
+rec merge = \list1. \list2.
+    case !list1 of {
+        "NULL" -> list2,
+        [e1, a1'] ->
+            case !list2 of {
+                "NULL" -> list1,
+                [e2, a2'] ->
+                    case e1 <= e2 of {
+                        true -> cons e1 (merge a1' list2),
+                        _ -> cons e2 (merge list1 a2')
+                    }
+            }
+    } ;;
+
+-- Implement a function mergesort list that sorts a linked list list of numbers by repeatedly using merge
+rec mergesort = \list.
+    case !list of {
+        "NULL" -> nil,
+        [e, a'] ->
+            case !a' of {
+                "NULL" -> list,
+                _ -> merge (mergesort (cons e nil)) (mergesort a')
+            }
+    } ;;

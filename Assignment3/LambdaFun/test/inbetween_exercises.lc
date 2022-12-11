@@ -101,4 +101,3 @@ between = <address 5>
 --- create a new link 7->
 --- make it point to 1->nil so that that you get 7->1->nil
 --- then change the content of 2-> to 7->1->nil
-
