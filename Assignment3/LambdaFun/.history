@@ -1,4 +1,8 @@
 :quit
+:load test/sort.lc
+:load test/sort.lc
+:load test/sort.lc
+:quit
 print (sort (cons 3 (cons 1 (cons 4 (cons 2 (cons 5 nil))))));;
 sort (cons 3 (cons 1 (cons 4 (cons 2 (cons 5 nil)))));;
 print (sort (cons 6 (cons 4 (cons 2 nil))));;
@@ -94,7 +98,3 @@ print (cons 6 (cons 4 (cons 2 nil)));;
 print (cons 6 (cons 4 (cons 2 nil)));;
 print (insert 5 (insert 4 (insert 3 (insert 2 (insert 1 nil)))));;
 insert 3 (insert 1 (insert 4 (insert 2 (insert 5 nil))));;
-insert 4 [4,5,1,4];;
-insert 1 [2,3,4];;
-insert 5 [1,2,3];;
-:reload
