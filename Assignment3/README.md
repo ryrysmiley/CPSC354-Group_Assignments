@@ -1,6 +1,57 @@
 ## LAMBDA FUN
 
 # Critical Appraisal
+### Pseudo Code of Insertion sort:
+
+1. Iterate over the elements of the array, starting at the second element (index 1).
+2. For each element, save it as the "key" element.
+3. Initialize a "j" variable to the index of the previous element (i - 1).
+4. While "j" is greater than or equal to 0 and the "j"th element is greater than the key:
+      Move the "j"th element to the next position (j + 1).
+      Decrement "j" by 1.
+5. Insert the key element into the correct position (j + 1).
+
+This algorithm works by iterating over the elements of the array, and for each element, inserting it into its correct position in the sorted subarray to the left of the element. This is done by shifting elements to the right as needed to make space for the element to be inserted. This process continues until all elements have been inserted into the correct position in the sorted subarray.
+#### Memory Explanation
+Given the list [4,3,2,1]
+a = <address 0>
+b = <address 1>
+c = <address 2>
+d = <address 3>
+a -> 4
+b -> 3
+c -> 2
+d -> 1
+
+starting at address b
+compare number at address a and address b and because 3 < 4
+a -> 3
+b -> 4
+result list [3,4,2,1]
+
+now address c
+compare number at address b and address c and because 2 < 4
+b -> 2
+c -> 4
+compare number at address a and address b and because 2 < 3
+a -> 2
+b -> 3
+result list [2,3,4,1]
+
+now address d
+compare number at address c and address d and because 1 < 4
+c -> 1
+d -> 4
+compare number at address b and address c and because 1 < 3
+b -> 1
+c -> 3
+compare number at address a and address b and because 1 < 2
+a -> 1
+b -> 2
+result list [1,2,3,4]
+
+Note that if the comparisons made were greater than instead of less than then the algorithm would have moved to the next address and stopped switching.
+
 ### Pseudo Code of Merge sort:  
 function mergesort( Array ):  
 &nbsp;&nbsp;if "length of Array less than or equal to 1"  
@@ -14,7 +65,7 @@ function mergesort( Array ):
 &nbsp;&nbsp;right_side = recursively call mergesort function with the right half as argument  
   
 &nbsp;&nbsp;return both halfs as two separate arrays, left_side and right_side  
-  
+
 function merge (Left_half, Right_half):  
 &nbsp;&nbsp;check both of the first values in the right and left half, and which ever one is the smallest value, pop the value   
 &nbsp;&nbsp;from that half and append to a new array and repeat process until both halves no longer contain any values.  
@@ -24,17 +75,6 @@ function merge (Left_half, Right_half):
 Insertion sort works by iterating over the elements of the list, and for each element, inserting it into its correct position in the sorted subarray to the left of the element.
 This is done by shifting elements to the right as needed to make space for the element to be inserted, and the process continues until all elements have been inserted into the correct position in the sorted subarray.
 
-### Pseudo Code of Insertion sort:
-
-1. Iterate over the elements of the array, starting at the second element (index 1).
-2. For each element, save it as the "key" element.
-3. Initialize a "j" variable to the index of the previous element (i - 1).
-4. While "j" is greater than or equal to 0 and the "j"th element is greater than the key:
-      Move the "j"th element to the next position (j + 1).
-      Decrement "j" by 1.
-5. Insert the key element into the correct position (j + 1).
-
-This algorithm works by iterating over the elements of the array, and for each element, inserting it into its correct position in the sorted subarray to the left of the element. This is done by shifting elements to the right as needed to make space for the element to be inserted. This process continues until all elements have been inserted into the correct position in the sorted subarray.
 ## Runtime Errors
 * None
 
