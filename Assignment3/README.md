@@ -25,7 +25,41 @@ function merge (Left_half, Right_half):
 * None
 
 # Observations
-An observation we found was that when traversing the linked list to insert the element at the correct position, we kept running into errors when trying to print and we realized it was because we weren't returning the actual pointer. 
+An observation we found was that when traversing the linked list to insert the element at the correct position, we kept running into errors when trying to print and we realized it was because we weren't returning the actual pointer. Another thing interesting was that when we were trying to print the list, we kept getting an error that said "unbound value". We realized that we were trying to print the pointer to the list, but we needed to print the actual list. This was a problem with our insert and sort function, the functions returned the list themselves but not the address to them. In the beginning, our insert function was:
+```
+let rec insert (x, l) = 
+  match l with
+  | [] -> [x]
+  | h::t -> if x < h then x::l else h::(insert (x, t))
+```
+We realized that we needed to return the pointer to the list, so we changed it to:
+```
+rec insert = \n. \list.
+    case !list of {
+        "NULL" -> cons n nil,
+        [e, a'] ->
+            case n <= e of {
+                true -> cons n list,
+                _ -> cons e (insert n a')
+            }
+    } ;;
+```
+We also had a problem with our sort function. The beginning of our sort function was:
+```
+let rec sort l = 
+  match l with
+  | [] -> []
+  | h::t -> insert (h, sort t)
+```
+We realized that we needed to return the pointer to the list, so we changed it to:
+```
+rec sort = \list.
+    case !list of {
+        "NULL" -> nil,
+        [e, a'] -> insert e (sort a')
+    } ;;
+```
+
 
 Another observation that I found interestinf that was also described in The Memory Cycle was the use of creating a memory cell on the stack vs the heap. The stack is temporary memory space that references memory cells on the heap. As described in the Memory Cycle when we do:
 ```
@@ -47,3 +81,4 @@ Memory:
 0 -> 10
 ```
 This means that we have created an item "a" on the stack with an address reference of 0 on our heap. In our larger memory (the heap) we see that address 0 corresponds to our value of 10.
+
