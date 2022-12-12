@@ -26,3 +26,19 @@ function merge (Left_half, Right_half):
 
 # Observations
 An observation we found was that when traversing the linked list to insert the element at the correct position, we kept running into errors when trying to print and we realized it was because we weren't returning the actual pointer. 
+
+Another observation that I found interestinf that was also described in The Memory Cycle was the use of creating a memory cell on the stack vs the heap. The stack is temporary memory space that references memory cells on the heap. As described in the Memory Cycle when we do:
+
+λ val a = new [] ;;
+
+We create a on the stack with a referential address in the memory cell on the heap. Running λ :env in our terminal will provide us with an explanation of our environment. Let us look at another example where we set a to a=10. Let's first allocate a to 10.
+
+λ a:=10;;
+Next, let's run our env command to see our virtual environment.
+λ :env
+The result we get back is:
+Env:
+a = <address 0>
+Memory:
+0 -> 10
+This means that we have created an item "a" on the stack with an address reference of 0 on our heap. In our larger memory (the heap) we see that address 0 corresponds to our value of 10.
