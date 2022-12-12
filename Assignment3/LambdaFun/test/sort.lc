@@ -73,6 +73,9 @@ rec mergesort = \list.
             }
     } ;;
 
+------------------
+--- TEST CASES ---
+------------------
 -- Output: [1,2,3,4,5]
 print (insert 5 (insert 4 (insert 3 (insert 2 (insert 1 nil)))));;
 
