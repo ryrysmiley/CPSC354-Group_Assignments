@@ -1,4 +1,13 @@
 :quit
+print (sort (cons 3 (cons 1 (cons 4 (cons 2 (cons 5 nil))))));;
+sort (cons 3 (cons 1 (cons 4 (cons 2 (cons 5 nil)))));;
+print (sort (cons 6 (cons 4 (cons 2 nil))));;
+:load test/sort.lc
+:quit
+:load test/sort.lc
+load test/sort.lc;
+load test/sort.lc
+:quit
 ç
 print (mergesort (cons 1 (cons 3 (cons 2 (cons 4 nil))))) ;;
 merge (cons 1 (cons 3 nil)) (cons 2 (cons 4 nil)) ;;
@@ -89,12 +98,3 @@ insert 4 [4,5,1,4];;
 insert 1 [2,3,4];;
 insert 5 [1,2,3];;
 :reload
-sort (cons 3 (cons 1 (cons 4 (cons 2 (cons 5 nil)))));;
-sort (cons 3 (cons 1 (cons 4 (cons 2 (cons 5 nil)))));;
-(sort (cons 6 (cons 4 (cons 2 nil))));;
-insert 3 (insert 1 (insert 4 (insert 2 (insert 5 nil))));;
-:reload
-insert 3 (insert 1 (insert 4 (insert 2 (insert 5 nil))));;ç
-insert 3 (insert 1 (insert 4 (insert 2 (insert 5 nil))));;
-insert 2 [];;
-insert 2 []ll

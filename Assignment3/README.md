@@ -32,7 +32,21 @@ let rec insert (x, l) =
   | [] -> [x]
   | h::t -> if x < h then x::l else h::(insert (x, t))
 ```
-We realized that we needed to return the pointer to the list, so we changed it to:
+Furthermore, when debugging I realized that you can only change the content of pointers/addresses and cannot change the addresses themselves. I realized our insert function initially did not work since if you want to insert 7 between 2 and 1 in 2->1->nil the following should work. However, it did not work because we were trying to change the address of the pointer, which is not possible. We had to change the content of the pointer instead. 
+```
+λ val a = new [2, new [1, nil]] ;;
+λ val b = new [7, a] ;;
+```
+The result we get back is:
+```
+val a = <address 0>
+val b = <address 1>
+Memory:
+0 -> [2, <address 2>]
+1 -> [7, <address 0>]
+2 -> [1, nil]
+```
+This means that we have created an item "a" on the stack with an address reference of 0 on our heap. In our larger memory (the heap) we see that address 0 corresponds to our value of 10. We realized that we needed to return the pointer to the list, so we changed it to:
 ```
 rec insert = \n. \list.
     case !list of {
@@ -59,9 +73,7 @@ rec sort = \list.
         [e, a'] -> insert e (sort a')
     } ;;
 ```
-
-
-Another observation that I found interestinf that was also described in The Memory Cycle was the use of creating a memory cell on the stack vs the heap. The stack is temporary memory space that references memory cells on the heap. As described in the Memory Cycle when we do:
+Another observation that I found interesting that was also described in The Memory Cycle was the use of creating a memory cell on the stack vs the heap. The stack is temporary memory space that references memory cells on the heap. As described in the Memory Cycle when we do:
 ```
 λ val a = new [] ;;
 ```

@@ -72,3 +72,14 @@ rec mergesort = \list.
                 _ -> merge (mergesort (cons e nil)) (mergesort a')
             }
     } ;;
+
+-- DEBUGGING
+{-
+a = <address 1>
+b = <address 2>
+between = <address 5>
+0 -> "NULL"
+1 -> [7, <address 1>]
+2 -> [2, <address 1>]
+5 -> [7, <address 1>]
+-}
