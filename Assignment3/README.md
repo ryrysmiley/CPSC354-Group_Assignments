@@ -1,7 +1,7 @@
 ## LAMBDA FUN
 
 # Critical Appraisal
-Pseudo Code of Merge sort:  
+### Pseudo Code of Merge sort:  
 function mergesort( Array ):  
 &nbsp;&nbsp;if "length of Array less than or equal to 1"  
 &nbsp;&nbsp;&nbsp;&nbsp;return Array  
@@ -20,11 +20,25 @@ function merge (Left_half, Right_half):
 &nbsp;&nbsp;from that half and append to a new array and repeat process until both halves no longer contain any values.  
 
 &nbsp;&nbsp;return the new array with the values from both the left and right halves.  
- 
+
+Insertion sort works by iterating over the elements of the list, and for each element, inserting it into its correct position in the sorted subarray to the left of the element.
+This is done by shifting elements to the right as needed to make space for the element to be inserted, and the process continues until all elements have been inserted into the correct position in the sorted subarray.
+
+### Pseudo Code of Insertion sort:
+
+1. Iterate over the elements of the array, starting at the second element (index 1).
+2. For each element, save it as the "key" element.
+3. Initialize a "j" variable to the index of the previous element (i - 1).
+4. While "j" is greater than or equal to 0 and the "j"th element is greater than the key:
+      Move the "j"th element to the next position (j + 1).
+      Decrement "j" by 1.
+5. Insert the key element into the correct position (j + 1).
+
+This algorithm works by iterating over the elements of the array, and for each element, inserting it into its correct position in the sorted subarray to the left of the element. This is done by shifting elements to the right as needed to make space for the element to be inserted. This process continues until all elements have been inserted into the correct position in the sorted subarray.
 ## Runtime Errors
 * None
 
-# Observations
+## Observations
 An observation we found was that when traversing the linked list to insert the element at the correct position, we kept running into errors when trying to print and we realized it was because we weren't returning the actual pointer. Another thing interesting was that when we were trying to print the list, we kept getting an error that said "unbound value". We realized that we were trying to print the pointer to the list, but we needed to print the actual list. This was a problem with our insert and sort function, the functions returned the list themselves but not the address to them. In the beginning, our insert function was:
 ```
 let rec insert (x, l) = 
