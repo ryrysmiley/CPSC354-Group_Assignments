@@ -73,6 +73,19 @@ rec mergesort = \list.
             }
     } ;;
 
+-- Output: [1,2,3,4,5]
+print (insert 5 (insert 4 (insert 3 (insert 2 (insert 1 nil)))));;
+
+-- Output: [2,4,6]
+print (sort (cons 6 (cons 4 (cons 2 nil))));;
+
+-- Output: [1,2,3,4]
+print (merge (cons 1 (cons 3 nil)) (cons 2 (cons 4 nil)));;
+
+-- Output: [1,2,3,4,5]
+print (mergesort (cons 5 (cons 4 (cons 3 (cons 2 (cons 1 nil))))));;
+
+
 -- DEBUGGING
 {-
 a = <address 1>
